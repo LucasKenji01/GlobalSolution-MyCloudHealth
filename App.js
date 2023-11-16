@@ -32,7 +32,7 @@ export default function App() {
           }} />
         <Stack.Screen
           name="Home"
-          component={HomeScreenScreen}
+          component={HomeScreen}
           options={{
             title: '',
             headerTransparent: true,
@@ -51,6 +51,3 @@ export default function App() {
   )
 }
 
-const styles = StyleSheet.create({
-
-})
