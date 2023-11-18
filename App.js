@@ -1,7 +1,7 @@
 import React from 'react'
 
 import LoginScreen from "./src/screens/LoginScreen";
-import CadastroScreen from "./src/screens/CadastroScreen";
+import CadastroLoginScreen from "./src/screens/CadastroLoginScreen";
 import HomeScreen from "./src/screens/HomeScreen";
 import HistoricoScreen from "./src/screens/HistoricoScreen";
 
@@ -23,8 +23,8 @@ export default function App() {
             headerShown: false,
           }} />
         <Stack.Screen
-          name="Cadastro"
-          component={CadastroScreen}
+          name="CadastroLogin"
+          component={CadastroLoginScreen}
           options={{
             title: '',
             headerTransparent: true,
