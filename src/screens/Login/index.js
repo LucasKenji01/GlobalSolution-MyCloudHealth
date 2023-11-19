@@ -1,21 +1,19 @@
 import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native'
 import React from 'react'
 
-export default function CadastroScreen({ navigation }) {
+export default function LoginScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Image style={styles.logo} source={require('../img/LogoGrande.png')} />
+        <Image style={styles.logo} source={require('../../assets/img/LogoGrande.png')} />
 
         <View style={styles.login}>
-          <Text style={styles.titulo}>Cadastro</Text>
+          <Text style={styles.titulo}>Login</Text>
 
-          <KeyboardAvoidingView behavior={'padding'}>
-            <View style={styles.email}>
-              <Text style={styles.labelEmail}>Email</Text>
-              <TextInput style={styles.inputEmail} />
-            </View>
-          </KeyboardAvoidingView>
+          <View style={styles.email}>
+            <Text style={styles.labelEmail}>Email</Text>
+            <TextInput style={styles.inputEmail} />
+          </View>
 
           <View style={styles.password}>
             <Text style={styles.labelPassword}>Password</Text>
@@ -23,14 +21,14 @@ export default function CadastroScreen({ navigation }) {
           </View>
 
           <View style={styles.naoPossuiConta}>
-            <Text style={styles.text}>Já tem conta?</Text>
-            <TouchableOpacity style={styles.link} onPress={() => { navigation.navigate('Login') }}>
-              <Text style={styles.linkTxt}>Fazer login</Text>
+            <Text style={styles.text}>Ainda não tem conta?</Text>
+            <TouchableOpacity style={styles.link} onPress={() => { navigation.navigate('CadastroLogin') }}>
+              <Text style={styles.linkTxt}>Cadastre-se</Text>
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity style={styles.btn} onPress={() => { navigation.navigate('Login') }}>
-            <Text style={styles.btnTxt}>Cadastrar</Text>
+          <TouchableOpacity style={styles.btn} activeOpacity={0.8} onPress={() => { navigation.navigate('UsuarioOuProfissional') }}>
+            <Text style={styles.btnTxt}>Entrar</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -119,4 +117,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 20,
   }
+
+
+
 })

@@ -1,14 +1,14 @@
 import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native'
 import React from 'react'
 
-export default function LoginScreen({ navigation }) {
+export default function CadastroScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Image style={styles.logo} source={require('../img/LogoGrande.png')} />
+        <Image style={styles.logo} source={require('../../assets/img/LogoGrande.png')} />
 
         <View style={styles.login}>
-          <Text style={styles.titulo}>Login</Text>
+          <Text style={styles.titulo}>Cadastro</Text>
 
           <KeyboardAvoidingView behavior={'padding'}>
             <View style={styles.email}>
@@ -23,14 +23,14 @@ export default function LoginScreen({ navigation }) {
           </View>
 
           <View style={styles.naoPossuiConta}>
-            <Text style={styles.text}>Ainda não tem conta?</Text>
-            <TouchableOpacity style={styles.link} onPress={() => { navigation.navigate('CadastroLogin') }}>
-              <Text style={styles.linkTxt}>Cadastre-se</Text>
+            <Text style={styles.text}>Já tem conta?</Text>
+            <TouchableOpacity style={styles.link} onPress={() => { navigation.navigate('Login') }}>
+              <Text style={styles.linkTxt}>Fazer login</Text>
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity style={styles.btn} onPress={() => { navigation.navigate('Home') }}>
-            <Text style={styles.btnTxt}>Entrar</Text>
+          <TouchableOpacity style={styles.btn} onPress={() => { navigation.navigate('Login') }}>
+            <Text style={styles.btnTxt}>Cadastrar</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -119,7 +119,4 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 20,
   }
-
-
-
 })
