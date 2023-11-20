@@ -10,7 +10,7 @@ export default function CadastroUsuarioScreen({ navigation }) {
           <Image source={require('../../assets/img/Voltar.png')} />
         </TouchableOpacity>
         <View style={styles.containerTitulo}>
-          <Text style={styles.titulo}>Cadastro</Text>
+          <Text style={styles.titulo}>Cadastro - Usuário</Text>
         </View>
         <View style={styles.form}>
           <Text style={styles.label}>Nome</Text>
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   titulo: {
-    fontSize: 40,
+    fontSize: 30,
     color: '#4788c6',
   },
   form: {

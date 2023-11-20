@@ -11,7 +11,7 @@ export default function UsuarioOuProfissionalScreen({ navigation }) {
         <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('CadastroUsuario')}>
           <Text style={styles.btnTxt}>Sou usuário</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('CadastroProfissional')}>
           <Text style={styles.btnTxt}>Sou profissional</Text>
         </TouchableOpacity>
       </View>
