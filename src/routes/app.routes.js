@@ -6,6 +6,7 @@ import Home from '../screens/Home'
 import Historico from '../screens/Historico'
 import CadastroUsuario from '../screens/CadastroUsuario'
 import CadastroProfissional from '../screens/CadastroProfissional'
+import Atendimento from '../screens/Atendimento'
 
 const Stack = createNativeStackNavigator();
 
@@ -51,6 +52,15 @@ export default function AppRoutes() {
       <Stack.Screen
         name="CadastroProfissional"
         component={CadastroProfissional}
+        options={{
+          title: '',
+          headerTransparent: true,
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Atendimento"
+        component={Atendimento}
         options={{
           title: '',
           headerTransparent: true,

@@ -33,6 +33,11 @@ export default function HomeScreen({ navigation }) {
           </View>
         </View>
         <View style={styles.divisor}></View>
+        <View style={styles.botoes}>
+          <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Historico')}>
+            <Text style={styles.btnTxt}>Histórico de Atendimentos</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </View>
   )
@@ -103,6 +108,21 @@ const styles = StyleSheet.create({
     borderRadius: 1,
     marginTop: 30,
     marginBottom: 30
-  }
+  },
+  botoes: {
+    alignItems: 'center',
+  },
+  btn: {
+    width: 330,
+    height: 50,
+    backgroundColor: '#4788c6',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 4,
+  },
+  btnTxt: {
+    color: 'white',
+    fontSize: 20,
+  },
 
 })
