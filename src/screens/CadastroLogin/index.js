@@ -1,7 +1,23 @@
 import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
+
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../configs/firebase";
 
 export default function CadastroScreen({ navigation }) {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  function handleRegister() {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        navigation.navigate('Login');
+        alert("Cadastrado com sucesso!");
+      })
+      .catch((error) => console.log(error))
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -10,16 +26,24 @@ export default function CadastroScreen({ navigation }) {
         <View style={styles.login}>
           <Text style={styles.titulo}>Cadastro</Text>
 
-          <KeyboardAvoidingView behavior={'padding'}>
-            <View style={styles.email}>
-              <Text style={styles.labelEmail}>Email</Text>
-              <TextInput style={styles.inputEmail} />
-            </View>
-          </KeyboardAvoidingView>
+          <View style={styles.email}>
+            <Text style={styles.labelEmail}>Email</Text>
+            <TextInput
+              style={styles.inputEmail}
+              placeholder='Digite um email'
+              value={email}
+              onChangeText={(text) => setEmail(text)}
+            />
+          </View>
 
           <View style={styles.password}>
             <Text style={styles.labelPassword}>Password</Text>
-            <TextInput style={styles.inputPassword} />
+            <TextInput
+              style={styles.inputPassword}
+              placeholder='Digite uma senha'
+              value={password}
+              onChangeText={(text) => setPassword(text)}
+            />
           </View>
 
           <View style={styles.naoPossuiConta}>
@@ -29,7 +53,7 @@ export default function CadastroScreen({ navigation }) {
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity style={styles.btn} onPress={() => { navigation.navigate('Login') }}>
+          <TouchableOpacity style={styles.btn} onPress={handleRegister}>
             <Text style={styles.btnTxt}>Cadastrar</Text>
           </TouchableOpacity>
         </View>

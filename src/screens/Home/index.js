@@ -1,8 +1,12 @@
 import { ScrollView, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
-import CadastroUsuarioScreen from '../CadastroUsuario'
+import React, { useContext } from 'react'
+
+import { AuthContext } from '../../contexts/auth';
 
 export default function HomeScreen({ navigation }) {
+
+  const { user } = useContext(AuthContext);
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>

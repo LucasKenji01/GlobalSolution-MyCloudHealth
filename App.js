@@ -5,11 +5,15 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import Routes from './src/routes';
 
+import AuthProvider from './src/contexts/auth';
+
 export default function App() {
   return (
     <NavigationContainer>
-      <StatusBar backgroundColor="#FFFFFF" barStyle="dark-content" />
-      <Routes />
+      <AuthProvider>
+        <StatusBar backgroundColor="#FFFFFF" barStyle="dark-content" />
+        <Routes />
+      </AuthProvider>
     </NavigationContainer>
   )
 }

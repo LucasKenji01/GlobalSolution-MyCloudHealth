@@ -1,7 +1,34 @@
-import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native'
-import React from 'react'
+import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, ScrollView, Alert } from 'react-native';
+import React, { useState, useContext } from 'react';
+
+import { AuthContext } from '../../contexts/auth';
+
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../configs/firebase';
 
 export default function LoginScreen({ navigation }) {
+
+  const { setUser } = useContext(AuthContext)
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  function handleLogin() {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        setUser(true);
+      })
+      .catch((error) => {
+        console.log('erro', JSON.stringify(error));
+        if (error.code == 'auth/invalid-email')
+          alert('Email inválido');
+        else if (error.code == 'auth/wrong-password')
+          alert('Senha inválida');
+        else
+          alert(error.message);
+      })
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -12,12 +39,22 @@ export default function LoginScreen({ navigation }) {
 
           <View style={styles.email}>
             <Text style={styles.labelEmail}>Email</Text>
-            <TextInput style={styles.inputEmail} />
+            <TextInput
+              style={styles.inputEmail}
+              placeholder='Digite seu email'
+              value={email}
+              onChangeText={(text) => setEmail(text)}
+            />
           </View>
 
           <View style={styles.password}>
             <Text style={styles.labelPassword}>Password</Text>
-            <TextInput style={styles.inputPassword} />
+            <TextInput
+              style={styles.inputPassword}
+              placeholder='Digite sua senha'
+              value={password}
+              onChangeText={(text) => setPassword(text)}
+            />
           </View>
 
           <View style={styles.naoPossuiConta}>
@@ -27,7 +64,7 @@ export default function LoginScreen({ navigation }) {
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity style={styles.btn} activeOpacity={0.8} onPress={() => { navigation.navigate('UsuarioOuProfissional') }}>
+          <TouchableOpacity style={styles.btn} activeOpacity={0.8} onPress={handleLogin}>
             <Text style={styles.btnTxt}>Entrar</Text>
           </TouchableOpacity>
         </View>
