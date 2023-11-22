@@ -1,14 +1,11 @@
 import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity, TextInput } from 'react-native'
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { db } from '../../configs/firebase';
 import { ref, set, push, child } from "firebase/database";
 
-import { UserContext } from '../../contexts/user';
 
 
 export default function CadastroUsuarioScreen({ navigation }) {
-
-  const { setCadastrado } = useContext(UserContext);
 
   const [nome, setNome] = useState('');
   const [sobrenome, setSobrenome] = useState('');
@@ -46,7 +43,6 @@ export default function CadastroUsuarioScreen({ navigation }) {
       })
     navigation.replace('Home');
     alert('Cadastrado com sucesso!')
-    setCadastrado(true)
   }
 
   return (
