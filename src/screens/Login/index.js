@@ -13,7 +13,12 @@ export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function handleLogin() {
+  const account = {
+    email: email,
+    password: password
+  }
+
+  async function handleLogin() {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         setUser(true);

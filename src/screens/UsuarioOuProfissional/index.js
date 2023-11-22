@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 
 export default function UsuarioOuProfissionalScreen({ navigation }) {
+
   return (
     <View style={styles.background}>
       <View style={styles.container}>

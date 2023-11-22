@@ -1,11 +1,7 @@
 import { ScrollView, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
-import React, { useContext } from 'react'
-
-import { AuthContext } from '../../contexts/auth';
+import React from 'react'
 
 export default function HomeScreen({ navigation }) {
-
-  const { user } = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
@@ -17,10 +13,10 @@ export default function HomeScreen({ navigation }) {
             <View style={styles.containerPerfil}>
               <Image source={require('../../assets/img/Perfil.png')} />
               <View style={styles.links}>
-                <TouchableOpacity style={styles.link}>
+                <TouchableOpacity style={styles.link} onPress={() => navigation.navigate('VisualizarCadastro')}>
                   <Text style={styles.linkTxt}>Visulizar minhas informações</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.link}>
+                <TouchableOpacity style={styles.link} onPress={() => navigation.navigate('EditarCadastro')}>
                   <Text style={styles.linkTxt}>Editar minhas informações</Text>
                 </TouchableOpacity>
               </View>

@@ -1,7 +1,54 @@
 import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity, TextInput } from 'react-native'
-import React from 'react'
+import React, { useState, useContext } from 'react'
+import { db } from '../../configs/firebase';
+import { ref, set, push, child } from "firebase/database";
+
+import { UserContext } from '../../contexts/user';
+
 
 export default function CadastroUsuarioScreen({ navigation }) {
+
+  const { setCadastrado } = useContext(UserContext);
+
+  const [nome, setNome] = useState('');
+  const [sobrenome, setSobrenome] = useState('');
+  const [dataNascimento, setDataNascimento] = useState('');
+  const [peso, setPeso] = useState('');
+  const [altura, setAltura] = useState('');
+  const [sexo, setSexo] = useState('');
+  const [logradouro, setLogradouro] = useState('');
+  const [numero, setNumero] = useState('');
+  const [bairro, setBairro] = useState('');
+  const [cidade, setCidade] = useState('');
+  const [estado, setEstado] = useState('');
+  const [cep, setCep] = useState('');
+
+  const user = {
+    nome: nome,
+    sobrenome: sobrenome,
+    dataNascimento: dataNascimento,
+    peso: peso,
+    altura: altura,
+    sexo: sexo,
+    logradouro: logradouro,
+    numero: numero,
+    bairro: bairro,
+    cidade: cidade,
+    estado: estado,
+    cep: cep,
+  }
+
+  async function cadastrar() {
+    const id = push(child(ref(db), 'usuario')).key
+    set(ref(db, `/usuario/${id}`), user)
+      .catch((error) => {
+        alert(error.message);
+      })
+    navigation.replace('Home');
+    alert('Cadastrado com sucesso!')
+    setCadastrado(true)
+  }
+
   return (
     <ScrollView style={styles.background}>
       <View style={styles.container}>
@@ -14,38 +61,98 @@ export default function CadastroUsuarioScreen({ navigation }) {
         </View>
         <View style={styles.form}>
           <Text style={styles.label}>Nome</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            placeholder='Digite seu nome'
+            value={nome}
+            onChangeText={(text) => setNome(text)}
+          />
           <Text style={styles.label}>Sobrenome</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            placeholder='Digite seu sobrenome'
+            value={sobrenome}
+            onChangeText={(text) => setSobrenome(text)}
+          />
           <Text style={styles.label}>Data de Nascimento</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            placeholder='Digite sua data de nascimento'
+            value={dataNascimento}
+            onChangeText={(text) => setDataNascimento(text)}
+          />
           <View style={styles.pesoEAltura}>
             <View style={styles.gap}>
               <Text style={styles.label}>Peso</Text>
-              <TextInput style={styles.inputPesoEAltura} />
+              <TextInput
+                style={styles.inputPesoEAltura}
+                placeholder='Digite seu peso'
+                value={peso}
+                onChangeText={(text) => setPeso(text)}
+              />
             </View>
             <View>
               <Text style={styles.label}>Altura</Text>
-              <TextInput style={styles.inputPesoEAltura} />
+              <TextInput
+                style={styles.inputPesoEAltura}
+                placeholder='Digite sua altura'
+                value={altura}
+                onChangeText={(text) => setAltura(text)}
+              />
             </View>
           </View>
           <Text style={styles.label}>Sexo</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            placeholder='Digite o sexo'
+            value={sexo}
+            onChangeText={(text) => setSexo(text)}
+          />
           <Text style={styles.label}>Logradouro</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            placeholder='Digite seu logradouro'
+            value={logradouro}
+            onChangeText={(text) => setLogradouro(text)}
+          />
           <Text style={styles.label}>Número</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            placeholder='Digite o número'
+            value={numero}
+            onChangeText={(text) => setNumero(text)}
+          />
           <Text style={styles.label}>Bairro</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            placeholder='Digite seu bairro'
+            value={bairro}
+            onChangeText={(text) => setBairro(text)}
+          />
           <Text style={styles.label}>Cidade</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            placeholder='Digite sua cidade'
+            value={cidade}
+            onChangeText={(text) => setCidade(text)}
+          />
           <Text style={styles.label}>Estado</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            placeholder='Digite seu estado'
+            value={estado}
+            onChangeText={(text) => setEstado(text)}
+          />
           <Text style={styles.label}>Cep</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            placeholder='Digite seu cep'
+            value={cep}
+            onChangeText={(text) => setCep(text)}
+          />
 
           <View style={styles.containerBtn}>
-            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Home')}>
+            <TouchableOpacity style={styles.btn} onPress={cadastrar}>
               <Text style={styles.btnTxt}>Cadastrar</Text>
             </TouchableOpacity>
           </View>
